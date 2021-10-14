@@ -17,28 +17,73 @@ public class LCAtest {
 	@Test
 	public void testBasic() {
 		LCA tree = new LCA();
-        tree.root = new Node(1);
-        tree.root.left = new Node(2);
-        tree.root.right = new Node(3);
-        tree.root.left.left = new Node(4);
-        tree.root.left.right = new Node(5);
-        tree.root.right.left = new Node(6);
-        tree.root.right.right = new Node(7);
-        
-        int result = tree.findLCA(4, 5);
+		tree.root = new Node(1);
+		tree.root.left = new Node(2);
+		tree.root.right = new Node(3);
+		tree.root.left.left = new Node(4);
+		tree.root.left.right = new Node(5);
+		tree.root.right.left = new Node(6);
+		tree.root.right.right = new Node(7);
+
+		int result = tree.findLCA(4, 5);
 		assertEquals("Checking if the lowest common ancestor works for 4 & 5:", result, 2);
-		
+
 		result = tree.findLCA(4, 6);
 		assertEquals("Checking if the lowest common ancestor works for 4 & 6:", result, 1);
-		
+
 		result = tree.findLCA(3, 4);
 		assertEquals("Checking if the lowest common ancestor works for 3 & 4:", result, 1);
-		
+
 		result = tree.findLCA(2, 4);
 		assertEquals("Checking if the lowest common ancestor works for 2 & 4:", result, 2);
-		
+
 		result = tree.findLCA(6, 7);
 		assertEquals("Checking if the lowest common ancestor works for 6 & 7:", result, 3);
+	}
+
+	// tests an all left tree
+	@Test
+	public void testLeftSide() {
+		LCA tree = new LCA();
+		tree.root = new Node(1);
+		tree.root.left = new Node(2);
+		tree.root.left.left = new Node(4);
+
+
+		int result = tree.findLCA(1, 4);
+		assertEquals("Checking if the lowest common ancestor works for 1 & 4:", result, 1);
+
+		result = tree.findLCA(2, 4);
+		assertEquals("Checking if the lowest common ancestor works for 2 & 4:", result, 2);
+	}
+	
+	// tests an all left tree
+	@Test
+	public void testRightSide() {
+		LCA tree = new LCA();
+		tree.root = new Node(1);
+		tree.root.right = new Node(2);
+		tree.root.right.right = new Node(4);
+
+
+		int result = tree.findLCA(1, 4);
+		assertEquals("Checking if the lowest common ancestor works for 1 & 4:", result, 1);
+
+		result = tree.findLCA(2, 4);
+		assertEquals("Checking if the lowest common ancestor works for 2 & 4:", result, 2);
+	}
+	
+	// tests negative
+	@Test
+	public void testNegatives() {
+		LCA tree = new LCA();
+		tree.root = new Node(-9);
+		tree.root.right = new Node(-82);
+		tree.root.left = new Node(-4);
+
+
+		int result = tree.findLCA(-4, -82);
+		assertEquals("Checking if the lowest common ancestor works for 1 & 4:", result, -9);
 	}
 
 }
