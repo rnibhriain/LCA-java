@@ -4,9 +4,9 @@ import org.junit.Test;
 
 public class DAGTest {
 
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testNull() {
-		DAG tree = new Dag();
+		DAG tree = new DAG(2);
 		int result = tree.findLCA(0, 3);
 		assertEquals("Checking if the lowest common ancestor works for null:", result, -1);
 	}
@@ -19,15 +19,15 @@ public class DAGTest {
 		test.addEdge(-1, 2);
 		test.addEdge(1, -2);
 		test.addEdge(-1, -2);
-		assertEquals("Should contain no edges", 0, test.E());
+		assertEquals("Should contain no edges", 0, test.edges);
 
 		test.addEdge(1, 2);
-		assertEquals("Should contain 1 edge", 1, test.E());
+		assertEquals("Should contain 1 edge", 1, test.edges);
 	}
 
 
 	//test the count of vertices for some diff dags
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testVertices(){
 		DAG dag =new DAG(8);//create an dag graph
 		dag.addEdge(0, 1);
@@ -38,7 +38,7 @@ public class DAGTest {
 		dag.addEdge(5, 6);
 		dag.addEdge(6, 7);
 
-		assertEquals("Number of vertices: ", 8, dag.V());
+		assertEquals("Number of vertices: ", 8, dag.vertices);
 		dag =new DAG(8);
 		dag.addEdge(0, 1);
 		dag.addEdge(0, 2);
@@ -50,7 +50,7 @@ public class DAGTest {
 		dag.addEdge(6, 7);
 		dag.addEdge(7, 8);
 
-		assertEquals("Number of vertices: ", 9, dag.V());
+		assertEquals("Number of vertices: ", 9, dag.vertices);
 		dag =new DAG(8);
 		dag.addEdge(0, 1);
 		dag.addEdge(0, 2);
@@ -62,7 +62,7 @@ public class DAGTest {
 		dag.addEdge(6, 8);
 		dag.addEdge(7, 8);
 
-		assertEquals("Number of verices: ", 9, dag.V());
+		assertEquals("Number of verices: ", 9, dag.vertices);
 	}
 
 	//Testing the LCA method, will test for various problems that may arise
