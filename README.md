@@ -1,3 +1,3 @@
 # LCA-java
 
-Assignment 2 for: CSU33012
+Assignment 1 + 2 for: CSU33012
